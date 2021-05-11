@@ -34,7 +34,6 @@ if not os.path.exists('scores.csv'):
     intersection = AnnotationManager.intersection(am.annotations, ['vtc', 'its'])
     segments = am.get_collapsed_segments(intersection)
     segments = segments[segments['speaker_type'].isin(speakers)]
-    segments.sort_values(['segment_onset', 'segment_offset']).to_csv('test.csv', index = False)
 
     conf50 = segments[segments['set'] == 'vtc'].copy()
     conf50 = confusion(conf50, 0.5)

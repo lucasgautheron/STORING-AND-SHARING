@@ -9,6 +9,5 @@
 *.fdb_latexmk
 fglabels
 main.pdf
-example.eps
-img/*eps-converted-to.pdf
+*eps-converted-to.pdf
 *-stamp

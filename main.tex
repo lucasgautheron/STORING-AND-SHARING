@@ -56,7 +56,7 @@ Laboratoire de Sciences Cognitives et de Psycholinguistique, Département d'Etud
 \maketitle
 
 \abstract{
-The technique of \textit{in situ}, long-form recordings is gaining momentum in different fields of research, notably linguistics and pathology. This method, however, poses several technical challenges, some of which are amplified by the peculiarities of the data, including their sensitiveness and their volume. In the following paper, we begin by outlining the problems related to the management, storage, and sharing of the corpora produced using this technique. We then go on to propose a multi-component solution to these problems, in the specific case of daylong recordings of children. As part of this solution, we release \emph{ChildProject}, a python package to perform the operations typically required to work with such datasets. The package also provides built-in functions to evaluate the annotations using a number of measures commonly used in speech processing and linguistics. Our proposal, as we argue, could be generalized to broader populations.
+The technique of \textit{in situ}, long-form recordings is gaining momentum in different fields of research, notably linguistics and pathology. This method, however, poses several technical challenges, some of which are amplified by the peculiarities of the data, including their sensitiveness and their volume. In the following paper, we begin by outlining the problems related to the management, storage, and sharing of the corpora produced using this technique. We then go on to propose a multi-component solution to these problems, in the specific case of daylong recordings of children. As part of this solution, we release \emph{ChildProject}, a python package to perform the operations typically required to work with such datasets and to evaluate the reliability of annotations using a number of measures commonly used in speech processing and linguistics. Our proposal, as we argue, could be generalized to broader populations.
 }
 
 \keywords{daylong recordings, speech data management, data distribution, annotation evaluation, inter-rater reliability}
@@ -78,7 +78,7 @@ The technique of \textit{in situ}, long-form recordings is gaining momentum in d
 
 \section{Introduction}
 
-Long-form recordings are those collected over extended periods of time, typically via a wearable. Although the technique was used with normotypical adults decades ago \citep{ear1,ear2}, it became widespread in the study of early childhood over the last 15 years or so. The LENA Foundation created a hardware-software combination that illuminated the potential of this technique for theoretical and applied purposes (e.g., \citealt{christakis2009audible,warlaumont2014social}). More recently, such data is being discussed in the context of neurological disorders (e.g., \citealt{riad2020vocal}). In this article, we define the unique space of difficulties surrounding long-form recordings, and introduce a python package that provides practical solutions, with a focus on child-centered recordings. We end by discussing ways in which these solutions could be generalized to other populations.
+Long-form recordings are those collected over extended periods of time, typically via a wearable. Although the technique was used with normotypical adults decades ago \citep{ear1,ear2}, it became widespread in the study of early childhood over the last 15 years or so. The LENA Foundation created a hardware-software combination that illuminated the potential of this technique for theoretical and applied purposes (e.g., \citealt{christakis2009audible,warlaumont2014social}). More recently, such data is being discussed in the context of neurological disorders (e.g., \citealt{riad2020vocal}). In this article, we define the unique space of difficulties surrounding long-form recordings, and introduce a set of packages that provides practical solutions, with a focus on child-centered recordings. We end by discussing ways in which these solutions could be generalized to other populations. In order to demonstrate how our proposal helps design reproducible research on day-long recordings of children, we have released the source of the paper and the code to build the figures used to illustrate the capabilities of our python package from the data.
 
 \section{Problem space}\label{section:problemspace}
 
@@ -319,7 +319,7 @@ Many of the \emph{remotes} supported by DataLad require user-authentication, thu
 
 DataLad's metadata\footnote{\url{http://docs.datalad.org/en/stable/metadata.html}} system can extract and aggregate information describing the contents of a collection of datasets. A search function then allows the discovery of datasets based on these metadata. We have developed a DataLad extension to extract meaningful metadata from datasets into DataLad's metadata system \citep{datalad_extension}. This allows, for instance, to search for datasets containing a given language. Moreover, DataLad's metadata can natively incorporate DataCite \citep{brase2009datacite} descriptions into its own metadata.
 
-DataLad may link data and software dependencies associated to a script as it is run. These scripts can later be re-executed by others, and the dependencies will automatically be downloaded. This way, DataLad can keep track of how each intermediate file was generated, thus simplifying the reproducibility of analyses. DataLad's handbook provides a tutorial to create a fully reproducible paper \citep[Chapter~22]{datalad_handbook}, and a template is available on GitHub \citep{reproducible_paper}.
+DataLad may link data and software dependencies associated to a script as it is run. These scripts can later be re-executed by others, and the dependencies will automatically be downloaded. This way, DataLad can keep track of how each intermediate file was generated, thus simplifying the reproducibility of analyses. DataLad's handbook provides a tutorial to create a fully reproducible paper \citep[Chapter~22]{datalad_handbook}, and a template is available on GitHub \citep{reproducible_paper}. The present paper has been built upon this template, and its source is available on GIN\footnote{\url{https://gin.g-node.org/LAAC-LSCP/managing-storing-sharing-paper}}.
 
 DataLad is domain-agnostic, which makes it suitable for maturing techniques such as language acquisition studies based on long-form recordings. The open-access data of the WU-Minn Human Connectome Project \citep{pub.1022076283}, totalling 80 terabytes to date, have been made available through DataLad \footnote{\label{note:hcp}\url{https://github.com/datalad-datasets/human-connectome-project-openaccess}}.
 
@@ -484,12 +484,13 @@ Supercomputing Center (PSC), using the Extreme Science and Engineering Discovery
 The authors have no conflict of interests to disclose.
 
 \subsubsection*{Availability of data and material}
+
 This paper does not directly rely on specific data or material.
 
 \subsubsection*{Code availability}
 
+The present paper can be reproduced from its source, which is hosted on GIN at \url{https://gin.g-node.org/LAAC-LSCP/managing-storing-sharing-paper}.
 The ChildProject package is available on GitHub at \url{https://github.com/LAAC-LSCP/ChildProject}. We provide scripts and templates for DataLad managed datasets at \url{http://doi.org/10.17605/OSF.IO/6VCXK} \citep{datalad_procedures}. We also provide a DataLad extension to extract metadata from corpora of daylong recordings \citep{datalad_extension}.
-Examples of annotations evaluations using the package can be found at XXX.
 
 \appendix
 
