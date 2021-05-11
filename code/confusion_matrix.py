@@ -34,8 +34,9 @@ def grid_to_vector(grid):
     return np.argmax(grid[:,::-1], axis = 1)
 
 def conf_matrix(horizontal, vertical, categories):
-    vertical = np.vectorize(lambda x: categories[x])(grid_to_vector(vertical))
-    horizontal = np.vectorize(lambda x: categories[x])(grid_to_vector(horizontal))
+    n = len(categories)-1
+    vertical = np.vectorize(lambda x: categories[n-x])(grid_to_vector(vertical))
+    horizontal = np.vectorize(lambda x: categories[n-x])(grid_to_vector(horizontal))
 
     confusion = confusion_matrix(vertical, horizontal, labels = categories)
     confusion = normalize(confusion, axis = 1, norm = 'l1')
