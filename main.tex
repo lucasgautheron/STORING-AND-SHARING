@@ -36,7 +36,7 @@
 
 \graphicspath{.}
 
-\title{Managing, storing and sharing long-form recordings and their annotations}
+\title{Managing, storing, and sharing long-form recordings and their annotations}
 
 \author{%
 Lucas Gautheron \and Nicolas Rochat \and Alejandrina Cristia
@@ -56,7 +56,7 @@ Laboratoire de Sciences Cognitives et de Psycholinguistique, Département d'Etud
 \maketitle
 
 \abstract{
-The technique of \textit{in situ}, long-form recordings is gaining momentum in different fields of research, notably linguistics and pathology. This method, however, poses several technical challenges, some of which are amplified by the peculiarities of the data, including their sensitiveness and their volume. In the following paper, we begin by outlining the problems related to the management, storage, and sharing of the corpora produced using this technique. We then go on to propose a multi-component solution to these problems, in the specific case of daylong recordings of children. As part of this solution, we release \emph{ChildProject}, a python package to perform the operations typically required to work with such datasets and to evaluate the reliability of annotations using a number of measures commonly used in speech processing and linguistics. Our proposal, as we argue, could be generalized to broader populations.
+The technique of \textit{in situ}, long-form recordings is gaining momentum in different fields of research, notably linguistics and pathology. This method, however, poses several technical challenges, some of which are amplified by the peculiarities of the data, including their sensitivity and their volume. In the following paper, we begin by outlining the problems related to the management, storage, and sharing of the corpora produced using this technique. We continue by proposing a multi-component solution to these problems, specifically in the case of daylong recordings of children. As part of this solution, we release \emph{ChildProject}, a python package for performing the operations typically required by such datasets and for evaluating the reliability of annotations using a number of measures commonly used in speech processing and linguistics. Our proposal, as we argue, could be generalized for broader populations.
 }
 
 \keywords{daylong recordings, speech data management, data distribution, annotation evaluation, inter-rater reliability, reproducible research}
@@ -78,7 +78,7 @@ The technique of \textit{in situ}, long-form recordings is gaining momentum in d
 
 \section{Introduction}
 
-Long-form recordings are those collected over extended periods of time, typically via a wearable. Although the technique was used with normotypical adults decades ago \citep{ear1,ear2}, it became widespread in the study of early childhood over the last 15 years or so. The LENA Foundation created a hardware-software combination that illuminated the potential of this technique for theoretical and applied purposes (e.g., \citealt{christakis2009audible,warlaumont2014social}). More recently, such data is being discussed in the context of neurological disorders (e.g., \citealt{riad2020vocal}). In this article, we define the unique space of difficulties surrounding long-form recordings, and introduce a set of packages that provides practical solutions, with a focus on child-centered recordings. We end by discussing ways in which these solutions could be generalized to other populations. In order to demonstrate how our proposal helps design reproducible research on day-long recordings of children, we have released the source of the paper and the code to build the figures used to illustrate the capabilities of our python package from the data.
+Long-form recordings are those collected over extended periods of time, typically via a wearable. Although the technique was used with normotypical adults decades ago \citep{ear1,ear2}, it became widespread in the study of early childhood over the last 15 years or so. The LENA Foundation created a hardware-software combination that illuminated the potential of this technique for theoretical and applied purposes (e.g., \citealt{christakis2009audible,warlaumont2014social}). More recently, such data is being discussed in the context of neurological disorders (e.g., \citealt{riad2020vocal}). In this article, we define the unique space of difficulties surrounding long-form recordings, and introduce a set of packages that provides practical solutions, with a focus on child-centered recordings.  We end by discussing ways in which these solutions could be generalized to other populations. In order to demonstrate how our proposal could foster reproducible research on day-long recordings of children, we have released the source of the paper and the code used to build the figures which illustrate the capabilities of our python package in Section \ref{section:application}.
 
 \section{Problem space}\label{section:problemspace}
 
@@ -382,8 +382,7 @@ regular tests                                                   & git-annex & \t
 \end{minipage}
 \end{table*}
 
-\section{Application: evaluating annotations' reliability}
-
+\section{Application: evaluating annotations' reliability}\label{section:application}
 
 Assessing the reliability of the annotations is crucial to linguistic research, but it can prove tedious in the case of daylong recordings. On one hand, analysis of the massive amounts of annotations generated by automatic tools may be computationally intensive. On the other hand, human annotations are usually sparse and thus more difficult to match with each other. Moreover, as emphasized in Section \ref{section:problemspace}, the variety of file formats used to store the annotations makes it even harder to compare them.
 
@@ -467,7 +466,7 @@ One could argue that new standards usually most usually end up increasing the am
 % removed: assessing data reliability
 % Data managers should be interested in DataLad because it might benefit to many studies, beyond long-form recordings. We should convince them it is worth diving into it
 
-We provide a solution to the technical challenges related to the management, storage and sharing of datasets of child-centered day-long recordings. This solution relies on four components: i) a set of standards for the structuring of the datasets; ii) \emph{ChildProject}, a python package to enforce these standards and perform useful operations on the datasets; iii) DataLad, a mature and actively developed version-control software for the management of scientific datasets; and iv) GIN, a storage provider compatible with Datalad. Building upon these standards, we have also provide tools to simplify the extraction of information from the annotations and the evaluation of their reliability along with the python package. The four components of our proposed design serve partially independent goals and can thus be decoupled, but we believe their combination would greatly benefit the technique of long-form recordings applied to language acquisition studies.
+We provide a solution to the technical challenges related to the management, storage and sharing of datasets of child-centered daylong recordings. This solution relies on four components: i) a set of standards for the structuring of the datasets; ii) \emph{ChildProject}, a python package to enforce these standards and perform useful operations on the datasets; iii) DataLad, a mature and actively developed version-control software for the management of scientific datasets; and iv) GIN, a storage provider compatible with Datalad. Building upon these standards, we have also provide tools to simplify the extraction of information from the annotations and the evaluation of their reliability along with the python package. The four components of our proposed design serve partially independent goals and can thus be decoupled, but we believe their combination would greatly benefit the technique of long-form recordings applied to language acquisition studies.
 
 \section*{Declarations}
 
