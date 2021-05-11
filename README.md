@@ -1,6 +1,6 @@
 # Managing, storing and sharing long-form recordings and their annotations
 
-## Explanations
+## Introduction
 
 This repository contains the source of the paper "Managing, storing and sharing long-form recordings and their annotations"
 by Lucas Gautheron et al.
@@ -13,28 +13,28 @@ This repository has been built upon the [Automatically Reproducible Paper Templa
 
 ## Reproducing the paper
 
-Before anything, make sure you have installed DataLad (see [here](https://childproject.readthedocs.io/en/latest/install.html) for instructions).
+Before anything, make sure you have installed DataLad (see [here](https://childproject.readthedocs.io/en/latest/install.html) for instructions) and [latexmk](https://mg.readthedocs.io/latexmk.html).
 
-1. Install the repository with DataLad:
+- Install the repository with DataLad:
 
 ```bash
 datalad install -r git@gin.g-node.org:/LAAC-LSCP/managing-storing-sharing-paper.git
 cd managing-storing-sharing-paper
 ```
 
-2. Install dependencies
+- Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Cleanup generated files
+- Cleanup generated files
 
 ```bash
 make clean
 ```
 
-4. Trigger the build
+- Trigger the build
 
 ```bash
 make main.pdf
