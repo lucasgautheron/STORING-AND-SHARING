@@ -30,25 +30,12 @@ its = segments_to_grid(segments[segments['set'] == 'its'], 0, segments['segment_
 
 speakers.extend(['overlap', 'none'])
 
-def get_pick(row):
-    for cat in reversed(speakers):
-        if row[cat]:
-            return cat
+def grid_to_vector(grid):
+    return np.argmax(grid[:,::-1], axis = 1)
 
 def conf_matrix(horizontal, vertical, categories):
-    vertical = pd.DataFrame(vertical, columns = categories)
-    vertical['pick'] = vertical.apply(
-        get_pick,
-        axis = 1
-    )
-    vertical = vertical['pick'].values
-
-    horizontal = pd.DataFrame(horizontal, columns = categories)
-    horizontal['pick'] = horizontal.apply(
-        get_pick,
-        axis = 1
-    )
-    horizontal = horizontal['pick'].values
+    vertical = np.vectorize(lambda x: categories[x])(grid_to_vector(vertical))
+    horizontal = np.vectorize(lambda x: categories[x])(grid_to_vector(horizontal))
 
     confusion = confusion_matrix(vertical, horizontal, labels = categories)
     confusion = normalize(confusion, axis = 1, norm = 'l1')
