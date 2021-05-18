@@ -39,3 +39,9 @@ make clean
 ```bash
 make main.pdf
 ```
+
+## Update the pre-print on OSF
+
+```bash
+git-annex export HEAD --to osf-storage
+```
