@@ -8,7 +8,7 @@
 *.tdo
 *.fdb_latexmk
 fglabels
-main.pdf
 *eps-converted-to.pdf
 *-stamp
 .ipynb_checkpoints
+scores.csv
