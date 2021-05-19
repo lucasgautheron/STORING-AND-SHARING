@@ -1,5 +1,0 @@
-[submodule "vandam-data"]
-	path = vandam-data
-	url = git@gin.g-node.org:/LAAC-LSCP/vandam-data.git
-	datalad-id = 5b235222-b7ba-47ec-951f-73a0bcc59886
-	datalad-url = git@gin.g-node.org:/LAAC-LSCP/vandam-data.git
