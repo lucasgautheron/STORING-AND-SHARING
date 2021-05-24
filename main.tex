@@ -1,3 +1,4 @@
+%!TEX TS-program = pdflatex
 \RequirePackage{fix-cm}
 %\documentclass{article}
 %\documentclass{svjour3}                     % onecolumn (standard format)
@@ -28,7 +29,7 @@
      \scalebox{#1}{\input{#2}}
 }
 \usepackage{subfig}
-\usepackage[outdir=./plots]{epstopdf}
+\usepackage{epstopdf}
 \usepackage{textcomp}
 
 
@@ -235,7 +236,7 @@ We provide a validation script that returns a detailed reporting of all the erro
 
 The package converts input annotations to standardized, wide-table CSV dataframes. The columns in these wide-table formats have been determined based on previous work, and are largely specific to the goal of studying infants' language environment and production.
 
-Annotations are indexed into a unique CSV dataframe which stores their location in the dataset, the set of annotations they belong to, and the recording and time interval they cover. The index, therefore, allows an easy retrieval of all the annotations that cover any given segment of audio, regardless of their original format and the naming conventions that were used. The system interfaces well with extant annotation standards. Currently, ChildProject supports: LENA annotations in .its \citep{xu2008lenatm}; ELAN annotations following the ACLEW DAS template  (\citealt{Casillas2017}, imported using Pympi: \citealt{pympi-1.70}); as well as rttm files outputted by ACLEW tools, namely the Voice Type Classifier (VTC) by \citet{lavechin2020opensource}, the Linguistic Unit Count Estimator (ALICE) by \citet{rasanen2020}, and the VoCalisation Maturity Network (VCMNet) by \citet{AlFutaisi2019}. Users can also adapt routines for file types or conventions that vary. For instance, users can adapt the ELAN import developed for the ACLEW DAS template for their own template (e.g., \url{https://github.com/LAAC-LSCP/ChildProject/discussions/204}); and examples are also provided for Praat's .TextGrid files \citep{boersma2006praat}. The package also supports custom, user-defined conversion routines.
+Annotations are indexed into a unique CSV dataframe which stores their location in the dataset, the set of annotations they belong to, and the recording and time interval they cover. The index, therefore, allows an easy retrieval of all the annotations that cover any given segment of audio, regardless of their original format and the naming conventions that were used. The system interfaces well with extant annotation standards. Currently, ChildProject supports: LENA annotations in .its \citep{xu2008lenatm}; ELAN annotations following the ACLEW DAS template  (\citealt{Casillas2017}, imported using Pympi: \citealt{pympi-1.70}); CHAT annotations \citep{MacWhinney2000}; as well as rttm files outputted by ACLEW tools, namely the Voice Type Classifier (VTC) by \citet{lavechin2020opensource}, the Linguistic Unit Count Estimator (ALICE) by \citet{rasanen2020}, and the VoCalisation Maturity Network (VCMNet) by \citet{AlFutaisi2019}. Users can also adapt routines for file types or conventions that vary. For instance, users can adapt the ELAN import developed for the ACLEW DAS template for their own template (e.g., \url{https://github.com/LAAC-LSCP/ChildProject/discussions/204}); and examples are also provided for Praat's .TextGrid files \citep{boersma2006praat}. The package also supports custom, user-defined conversion routines.
 
 Relying on the annotations index, the package can also calculate the intersection of the portions of audio covered by several annotators and align their annotations. This is useful when annotations from different annotators need to be combined (in order to retain the majority choice for instance) or compared (e.g., for reliability evaluations).
 
