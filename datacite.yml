@@ -50,8 +50,12 @@ license:
 # Funding information for this resource.
 # Separate funder name and grant number by comma.
 funding:
-  - "DFG, AB1234/5-6"
-  - "EU, EU.12345"
+  - "ANR, 17-CE28-0007 LangAge"
+  - "ANR, 16-DATA-0004 ACLEW"
+  - "ANR, 14-CE30-0003 MechELex"
+  - "ANR, 17-EURE-0017"
+  - "NSF, ACI-1445606"
+  - "GENCI-IDRIS, A0071011046"
 
 # Related publications. reftype might be: IsSupplementTo, IsDescribedBy, IsReferencedBy.
 # Please provide digital identifier (e.g., DOI) if possible.
