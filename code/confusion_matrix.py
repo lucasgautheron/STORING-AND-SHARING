@@ -17,42 +17,44 @@ import sys
 speakers = ['CHI', 'OCH', 'FEM', 'MAL']
 
 path = sys.argv[1]
-project = ChildProject(path)
-am = AnnotationManager(project)
-am.read()
 
-intersection = AnnotationManager.intersection(am.annotations, ['vtc', 'its'])
-segments = am.get_collapsed_segments(intersection)
-segments = segments[segments['speaker_type'].isin(speakers)]
+if __name__ == '__main__':
+    project = ChildProject(path)
+    am = AnnotationManager(project)
+    am.read()
 
-vtc = segments_to_grid(segments[segments['set'] == 'vtc'], 0, segments['segment_offset'].max(), 100, 'speaker_type', speakers)
-its = segments_to_grid(segments[segments['set'] == 'its'], 0, segments['segment_offset'].max(), 100, 'speaker_type', speakers)
+    intersection = AnnotationManager.intersection(am.annotations, ['vtc', 'its'])
+    segments = am.get_collapsed_segments(intersection)
+    segments = segments[segments['speaker_type'].isin(speakers)]
 
-speakers.extend(['overlap', 'none'])
+    vtc = segments_to_grid(segments[segments['set'] == 'vtc'], 0, segments['segment_offset'].max(), 100, 'speaker_type', speakers)
+    its = segments_to_grid(segments[segments['set'] == 'its'], 0, segments['segment_offset'].max(), 100, 'speaker_type', speakers)
 
-confusion_counts = conf_matrix(its, vtc, speakers)
+    speakers.extend(['none'])
 
-plt.rcParams.update({'font.size': 12})
-plt.rc('xtick', labelsize = 10)
-plt.rc('ytick', labelsize = 10)
+    confusion_counts = conf_matrix(vtc, its)
 
-fig, axes = plt.subplots(nrows = 1, ncols = 2, figsize=(6.4*2, 4.8))
+    plt.rcParams.update({'font.size': 12})
+    plt.rc('xtick', labelsize = 10)
+    plt.rc('ytick', labelsize = 10)
 
-confusion = normalize(confusion_counts, axis = 1, norm = 'l1')
+    fig, axes = plt.subplots(nrows = 1, ncols = 2, figsize=(6.4*2, 4.8))
 
-sns.heatmap(confusion, annot = True, fmt = '.2f', ax = axes[0], cmap = 'Reds')
-axes[0].set_xlabel('its')
-axes[0].set_ylabel('vtc')
-axes[0].xaxis.set_ticklabels(speakers)
-axes[0].yaxis.set_ticklabels(speakers)
+    confusion = confusion_counts/np.sum(vtc, axis = 0)[:,None]
 
-confusion_counts = np.transpose(confusion_counts)
-confusion = normalize(confusion_counts, axis = 1, norm = 'l1')
+    sns.heatmap(confusion, annot = True, fmt = '.2f', ax = axes[0], cmap = 'Reds')
+    axes[0].set_xlabel('its')
+    axes[0].set_ylabel('vtc')
+    axes[0].xaxis.set_ticklabels(speakers)
+    axes[0].yaxis.set_ticklabels(speakers)
 
-sns.heatmap(confusion, annot = True, fmt = '.2f', ax = axes[1], cmap = 'Reds')
-axes[1].set_xlabel('vtc')
-axes[1].set_ylabel('its')
-axes[1].xaxis.set_ticklabels(speakers)
-axes[1].yaxis.set_ticklabels(speakers)
+    confusion_counts = np.transpose(confusion_counts)
+    confusion = confusion_counts/np.sum(its, axis = 0)[:,None]
 
-plt.savefig('Fig5.pdf', bbox_inches = 'tight')
+    sns.heatmap(confusion, annot = True, fmt = '.2f', ax = axes[1], cmap = 'Reds')
+    axes[1].set_xlabel('vtc')
+    axes[1].set_ylabel('its')
+    axes[1].xaxis.set_ticklabels(speakers)
+    axes[1].yaxis.set_ticklabels(speakers)
+
+    plt.savefig('Fig5.pdf', bbox_inches = 'tight')
