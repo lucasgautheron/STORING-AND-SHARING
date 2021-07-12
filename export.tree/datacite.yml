@@ -1,0 +1,76 @@
+# Metadata for DOI registration according to DataCite Metadata Schema 4.1.
+# For detailed schema description see https://doi.org/10.5438/0014
+
+## Required fields
+
+# The main researchers involved. Include digital identifier (e.g., ORCID)
+# if possible, including the prefix to indicate its type.
+authors:
+  -
+    firstname: "Lucas"
+    lastname: "Gautheron"
+    affiliation: "Laboratoire de Sciences Cognitives et Psycholinguistique"
+    id: "ORCID:0000-0002-3776-3373"
+  -
+    firstname: "Nicolas"
+    lastname: "Rochat"
+  -
+    firstname: "Alejandrina"
+    lastname: "Cristia"
+    affiliation: "Laboratoire de Sciences Cognitives et Psycholinguistique"
+    id: "ORCID:0000-0003-2979-4556"
+
+# A title to describe the published resource.
+title: "Reproducible analyses of daylong recordings"
+
+# Additional information about the resource, e.g., a brief abstract.
+description: |
+  This dataset contains the source and the data used to generate
+  the paper "Managing, storing, and sharing long-form recordings and their annotations"
+  from the same authors.
+
+# Lit of keywords the resource should be associated with.
+# Give as many keywords as possible, to make the resource findable.
+keywords:
+  - linguistics
+  - daylong recordings
+  - speech data management
+  - annotations evaluation
+  - reproducible research
+
+# License information for this resource. Please provide the license name and/or a link to the license.
+# Please add also a corresponding LICENSE file to the repository.
+license:
+  name: "Creative Commons CC0 1.0 Public Domain Dedication"
+  url: "https://creativecommons.org/publicdomain/zero/1.0/"
+
+
+## Optional Fields
+
+# Funding information for this resource.
+# Separate funder name and grant number by comma.
+funding:
+  - "ANR, 17-CE28-0007 LangAge"
+  - "ANR, 16-DATA-0004 ACLEW"
+  - "ANR, 14-CE30-0003 MechELex"
+  - "ANR, 17-EURE-0017"
+  - "NSF, ACI-1445606"
+  - "GENCI-IDRIS, A0071011046"
+
+# Related publications. reftype might be: IsSupplementTo, IsDescribedBy, IsReferencedBy.
+# Please provide digital identifier (e.g., DOI) if possible.
+# Add a prefix to the ID, separated by a colon, to indicate the source.
+# Supported sources are: DOI, arXiv, PMID
+# In the citation field, please provide the full reference, including title, authors, journal etc.
+references:
+  -
+    id: "doi:10.31234/osf.io/w8trm"
+    reftype: "IsSupplementTo"
+    citation: "Managing, storing, and sharing long-form recordings and their annotations"
+
+
+# Resource type. Default is Dataset, other possible values are Software, DataPaper, Image, Text.
+resourcetype: Dataset
+
+# Do not edit or remove the following line
+templateversion: 1.2

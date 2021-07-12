@@ -1,0 +1,14 @@
+*.swp
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.fls
+*.tdo
+*.fdb_latexmk
+fglabels
+*eps-converted-to.pdf
+*-stamp
+.ipynb_checkpoints
+scores.csv
