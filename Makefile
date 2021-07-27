@@ -9,10 +9,10 @@ main.pdf: main.tex references.bib Fig4.pdf Fig5.pdf
 Fig4.pdf: code/recall.py scores.csv
 	code/recall.py vandam-data
 
-Fig5.pdf: code/confusion_matrix.py vandam-data/annotations/its/converted/*.csv vandam-data/annotations/vtc/converted/*.csv
+Fig5.pdf: code/confusion_matrix.py vandam-data/annotations/eaf/converted/*.csv vandam-data/annotations/vtc/converted/*.csv
 	code/confusion_matrix.py vandam-data
 
-scores.csv: vandam-data/annotations/its/converted/*.csv vandam-data/annotations/vtc/converted/*.csv
+scores.csv: vandam-data/annotations/its/converted/*.csv vandam-data/annotations/vtc/converted/*.csv vandam-data/annotations/eaf/converted/*.csv vandam-data/annotations/cha/aligned/converted/*.csv
 	code/recall.py vandam-data
 
 vandam-data/annotations/its/converted/*.csv:
@@ -20,6 +20,12 @@ vandam-data/annotations/its/converted/*.csv:
 
 vandam-data/annotations/vtc/converted/*.csv:
 	datalad get vandam-data/annotations/vtc/converted
+
+vandam-data/annotations/cha/aligned/converted/*.csv:
+	datalad get vandam-data/annotations/cha/aligned/converted
+
+vandam-data/annotations/eaf/converted/*.csv:
+	datalad get vandam-data/annotations/eaf/converted
 
 # This rule cleans up temporary LaTeX files, and result and PDF files
 clean:

@@ -12,16 +12,12 @@ import random
 import sys
 
 speakers = ['CHI', 'OCH', 'FEM', 'MAL']
-sets = ['its', 'vtc (conf 50%)', 'vtc (drop 50%)', 'vtc (conf 75%)', 'vtc (drop 75%)']
 
-def confusion(segments, prob):
-    segments['speaker_type'] = segments['speaker_type'].apply(
-        lambda s: random.choice(speakers) if random.random() < prob else s
-    )
-    return segments
-
-def drop(segments, prob):
-    return segments.sample(frac = 1-prob)
+sets = {
+    'vtc': 'VTC',
+    'its': 'LENA',
+    'cha/aligned': 'chat+mfa'
+}
 
 if __name__ == '__main__':
     if not os.path.exists('scores.csv'):
@@ -32,33 +28,15 @@ if __name__ == '__main__':
         am = AnnotationManager(project)
         am.read()
 
-        intersection = AnnotationManager.intersection(am.annotations, ['vtc', 'its'])
+        intersection = AnnotationManager.intersection(am.annotations, ['eaf'] + list(sets.keys()))
         segments = am.get_collapsed_segments(intersection)
         segments = segments[segments['speaker_type'].isin(speakers)]
-
-        conf50 = segments[segments['set'] == 'vtc'].copy()
-        conf50 = confusion(conf50, 0.5)
-        conf50['set'] = 'vtc (conf 50%)'
-
-        conf75 = segments[segments['set'] == 'vtc'].copy()
-        conf75 = confusion(conf75, 0.75)
-        conf75['set'] = 'vtc (conf 75%)'
-
-        drop50 = segments[segments['set'] == 'vtc'].copy()
-        drop50 = drop(drop50, 0.5)
-        drop50['set'] = 'vtc (drop 50%)'
-
-        drop75 = segments[segments['set'] == 'vtc'].copy()
-        drop75 = drop(drop75, 0.75)
-        drop75['set'] = 'vtc (drop 75%)'
-
-        segments = pd.concat([segments, conf50, conf75, drop50, drop75])
 
         metric = DetectionPrecisionRecallFMeasure()
 
         scores = []
         for speaker in speakers:
-            ref = segments_to_annotation(segments[(segments['set'] == 'vtc') & (segments['speaker_type'] == speaker)], 'speaker_type')
+            ref = segments_to_annotation(segments[(segments['set'] == 'eaf') & (segments['speaker_type'] == speaker)], 'speaker_type')
 
             for s in sets:
                 hyp = segments_to_annotation(segments[(segments['set'] == s) & (segments['speaker_type'] == speaker)], 'speaker_type')
@@ -106,7 +84,7 @@ if __name__ == '__main__':
 
         if i >= 2:
             ax.set_xticks(range(len(sets)))
-            ax.set_xticklabels(sets, rotation = 45, horizontalalignment = 'right')
+            ax.set_xticklabels(sets.values(), rotation = 45, horizontalalignment = 'right')
         else:
             ax.set_xticklabels(['' for i in range(len(sets))])
 
@@ -118,7 +96,7 @@ if __name__ == '__main__':
         _scores = scores[scores['speaker'] == speaker]
         for metric in ['recall', 'precision', 'f']:
             ax.scatter(
-                x = _scores['set'].apply(lambda s: sets.index(s)),
+                x = _scores['set'].apply(lambda s: list(sets.keys()).index(s)),
                 y = _scores[metric],
                 label = labels[metric],
                 s = 15,

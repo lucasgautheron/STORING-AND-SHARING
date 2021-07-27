@@ -23,16 +23,16 @@ if __name__ == '__main__':
     am = AnnotationManager(project)
     am.read()
 
-    intersection = AnnotationManager.intersection(am.annotations, ['vtc', 'its'])
+    intersection = AnnotationManager.intersection(am.annotations, ['vtc', 'eaf'])
     segments = am.get_collapsed_segments(intersection)
     segments = segments[segments['speaker_type'].isin(speakers)]
 
     vtc = segments_to_grid(segments[segments['set'] == 'vtc'], 0, segments['segment_offset'].max(), 100, 'speaker_type', speakers)
-    its = segments_to_grid(segments[segments['set'] == 'its'], 0, segments['segment_offset'].max(), 100, 'speaker_type', speakers)
+    eaf = segments_to_grid(segments[segments['set'] == 'eaf'], 0, segments['segment_offset'].max(), 100, 'speaker_type', speakers)
 
     speakers.extend(['none'])
 
-    confusion_counts = conf_matrix(vtc, its)
+    confusion_counts = conf_matrix(vtc, eaf)
 
     plt.rcParams.update({'font.size': 12})
     plt.rc('xtick', labelsize = 10)
@@ -43,17 +43,17 @@ if __name__ == '__main__':
     confusion = confusion_counts/np.sum(vtc, axis = 0)[:,None]
 
     sns.heatmap(confusion, annot = True, fmt = '.2f', ax = axes[0], cmap = 'Reds')
-    axes[0].set_xlabel('its')
+    axes[0].set_xlabel('eaf')
     axes[0].set_ylabel('vtc')
     axes[0].xaxis.set_ticklabels(speakers)
     axes[0].yaxis.set_ticklabels(speakers)
 
     confusion_counts = np.transpose(confusion_counts)
-    confusion = confusion_counts/np.sum(its, axis = 0)[:,None]
+    confusion = confusion_counts/np.sum(eaf, axis = 0)[:,None]
 
     sns.heatmap(confusion, annot = True, fmt = '.2f', ax = axes[1], cmap = 'Reds')
     axes[1].set_xlabel('vtc')
-    axes[1].set_ylabel('its')
+    axes[1].set_ylabel('eaf')
     axes[1].xaxis.set_ticklabels(speakers)
     axes[1].yaxis.set_ticklabels(speakers)
 

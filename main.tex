@@ -409,7 +409,7 @@ It should be noted that these measures are most useful in the absence of ground 
 \centering
 \includegraphics[width=0.8\textwidth]{Fig4.pdf}
 
-\caption{\label{fig:precision}\textbf{Examples of diarization performance evaluation using recall, precision and F1 score}. Audio from the the public VanDam corpus \citep{vandam-day} is annotated according to who-speaks-when, using both the LENA diarizer (its) and the Voice Type Classifier (VTC) by \citet{lavechin2020opensource}. Speech segments are classified among four speaker types: the key child (CHI), other children (OCH), male adults (MAL) and female adults (FEM). For illustration purposes, fake annotations are generated from that of the VTC. Two are computed by randomly assigning the speaker type to 50\% or 75\% (conf) of the VTC's speech segments. Two are computed by dropping 50\% or 75\% of speech segments from the VTC (drop). Recall, precision and F1 score are calculated for each of these annotations, by comparing them to the VTC. The worst F-score for the LENA is reached for OCH segments. Dropping segments does not alter precision; however, as expected, it has a substantially negative impact on recall.
+\caption{\label{fig:precision}\textbf{Examples of diarization performance evaluation using recall, precision and F1 score}. Audio from the the public VanDam corpus \citep{vandam-day} is annotated automatically according to who-speaks-when, using: the LENA diarizer; the Voice Type Classifier (VTC) by \citet{lavechin2020opensource}; and manual CHAT transcriptions \citep{MacWhinney2000} adjusted with the Montreal Forced Aligner \citep{mfa} (``cha''). Speech segments are classified among four speaker types: the key child (CHI), other children (OCH), male adults (MAL) and female adults (FEM). Recall, precision and F1 score are calculated for each of these annotations, by comparing them to annotations of 5 $\times$ 1 minute clips annotated by a human annotator using ELAN (``eaf''; \citealt{wittenburg2006elan}). The clips with the most adult words were targeted.
 }
 
 \end{figure*}
@@ -420,8 +420,8 @@ It should be noted that these measures are most useful in the absence of ground 
 \centering
 \includegraphics[width=\textwidth]{Fig5.pdf}
 
-\caption{\label{fig:confusion}\textbf{Example of diarization performance comparison using confusion matrices}
-LENA's annotations (its) of the public VanDam corpus \citep{vandam-day} are compared to the VTC's. The first coefficient of the left side matrix should be read as: ``38\% of CHI segments from the VTC are also labelled as CHI by the LENA's''. The first coefficient of the right side matrix should be read as: ``82\% of the CHI segments of the LENA are also labelled as CHI by the VTC''. The sum of each row of the right-hand plot may exceed one, since the VTC, unlike the LENA, can detect overlapping speakers.
+\caption{\label{fig:confusion}\textbf{Example of diarization performance evaluation using confusion matrices}
+VTC annotations of the public VanDam corpus \citep{vandam-day} are compared to a gold standard manually annotated using ELAN (eaf). The first coefficient of the left side matrix should be read as: ``43\% of CHI segments from the VTC were also labelled as CHI by the human annotator'' (i.e. as the precision). The first coefficient of the right side matrix should be read as: ``95\% of the portions labelled as CHI speech by the annotator were also labelled as CHI by the VTC'' (i.e. as the recall). The sum of each row of the right-hand plot may exceed one due to overlapping speech. However, the diagonal should ideally be only ones.
 }
 
 \end{figure*}
