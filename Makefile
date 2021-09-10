@@ -27,8 +27,15 @@ vandam-data/annotations/cha/aligned/converted/*.csv:
 vandam-data/annotations/eaf/converted/*.csv:
 	datalad get vandam-data/annotations/eaf/converted
 
+sample.pdf: code/sample.py vandam-data/recordings/converted/standard
+	python code/sample.py
+
+vandam-data/recordings/converted/standard:
+	datalad get vandam-data/recordings/converted/standard
+
 # This rule cleans up temporary LaTeX files, and result and PDF files
 clean:
 	rm -f main.bbl main.aux main.blg main.log main.out main.pdf main.tdo main.fls main.fdb_latexmk texput.log *-eps-converted-to.pdf scores.csv
 	datalad drop vandam-data/annotations/its/converted
 	datalad drop vandam-data/annotations/vtc/converted
+	datalad drop vandam-data/recordings/converted/standard
