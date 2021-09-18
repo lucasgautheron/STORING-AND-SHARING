@@ -4,7 +4,16 @@ from ChildProject.projects import ChildProject
 from ChildProject.annotations import AnnotationManager
 from ChildProject.metrics import segments_to_annotation
 
+import matplotlib
 import matplotlib.pyplot as plt
+matplotlib.use("pgf")
+matplotlib.rcParams.update({
+    "pgf.texsystem": "pdflatex",
+    'font.family': 'serif',
+    "font.serif" : "Times New Roman",
+    'text.usetex': True,
+    'pgf.rcfonts': False,
+})
 import numpy as np
 import os
 import pandas as pd
@@ -107,4 +116,4 @@ if __name__ == '__main__':
     ax.legend(loc = "upper right", borderaxespad = 0.1, bbox_to_anchor=(1, 1.25), ncol = 3)
 
     plt.subplots_adjust(wspace = 0.15)
-    plt.savefig('Fig4.pdf', bbox_inches = 'tight')
+    plt.savefig('Fig6.pdf', bbox_inches = 'tight')

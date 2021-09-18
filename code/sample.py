@@ -58,9 +58,9 @@ if __name__ == "__main__":
         1 / sr,
     )
 
-    plt.plot(time, signal, color = 'black')
+    plt.plot(time, .5*signal, color = 'black')
 
-    positions = {"eaf": -0.6, "cha": -0.9, "its": -1.2}
+    positions = {"eaf": -0.4, "cha": -0.6, "its": -0.8}
     annotators = {"its": '\\textbf{LENA}', 'cha': '\\textbf{Annotator 2}\n\\textbf{(CHAT)}', 'eaf': '\\textbf{Annotator 1}\n\\textbf{(ELAN)}'}
     colors = {"MAL": "red", "FEM": "blue", "CHI": "green"}
     speakers = {"MAL": "male adult", "FEM": "female adult", "CHI": "key child"}
@@ -103,4 +103,4 @@ if __name__ == "__main__":
 
 
     plt.axis("off")
-    plt.savefig("sample.pdf", bbox_inches = 'tight')
+    plt.savefig("Fig2.pdf", bbox_inches = 'tight')

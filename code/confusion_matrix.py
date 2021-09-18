@@ -10,8 +10,16 @@ from sklearn.metrics import confusion_matrix
 from sklearn.preprocessing import normalize
 
 import seaborn as sns
+import matplotlib
 import matplotlib.pyplot as plt
-
+matplotlib.use("pgf")
+matplotlib.rcParams.update({
+    "pgf.texsystem": "pdflatex",
+    'font.family': 'serif',
+    "font.serif" : "Times New Roman",
+    'text.usetex': True,
+    'pgf.rcfonts': False,
+})
 import sys
 
 speakers = ['CHI', 'OCH', 'FEM', 'MAL']
@@ -57,4 +65,4 @@ if __name__ == '__main__':
     axes[1].xaxis.set_ticklabels(speakers)
     axes[1].yaxis.set_ticklabels(speakers)
 
-    plt.savefig('Fig5.pdf', bbox_inches = 'tight')
+    plt.savefig('Fig7.pdf', bbox_inches = 'tight')
